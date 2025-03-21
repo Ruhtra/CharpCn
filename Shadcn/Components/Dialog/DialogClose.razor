@@ -1,0 +1,11 @@
+﻿@inject DialogService DialogService
+
+<div class="contents" @onclick="() => DialogService.Hide(ParentDialog!.DialogId)">
+    @ChildContent
+</div>
+
+@code {
+    [CascadingParameter] public Dialog? ParentDialog { get; set; }
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

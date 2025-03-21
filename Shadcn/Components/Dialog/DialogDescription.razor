@@ -1,0 +1,9 @@
+﻿@inject DialogService DialogService
+
+<p class="text-muted-foreground text-sm">
+    @ChildContent
+</p>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

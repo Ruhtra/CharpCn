@@ -1,0 +1,16 @@
+﻿@using Shadcn.Components.Priv.Cn
+@inject DialogService DialogService
+
+<h2  class="@GetDialogTitleClasses()">
+    @ChildContent
+</h2>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty; // Classes adicionais fornecidas pelo usuário
+
+    private string GetDialogTitleClasses() {
+        var baseClasses = "bg-red-500 text-lg font-semibold leading-none tracking-tight";
+        return CnHelper.Cn([baseClasses, Class]);
+    }
+}

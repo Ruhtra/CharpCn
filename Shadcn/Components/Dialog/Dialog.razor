@@ -1,0 +1,27 @@
+﻿@implements IDisposable
+@inject DialogService DialogService
+
+<CascadingValue Value="this">
+    @ChildContent
+
+    <PortalOutlet Name="@DialogId" />
+</CascadingValue>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string DialogId { get; set; } = Guid.NewGuid().ToString();
+    [Parameter] public bool? open { get; set; }
+    [Parameter] public Action? changeDialog { get; set; }
+
+    private bool IsVisible => DialogService.IsVisible(DialogId);
+
+    protected override void OnInitialized() {
+        // Registrar o dialogo no serviço
+        DialogService.RegisterDialog(DialogId, StateHasChanged);
+    }
+
+    public void Dispose() {
+        DialogService.UnregisterDialog(DialogId);  // Remove o dialog quando o componente for descartado
+    }
+}

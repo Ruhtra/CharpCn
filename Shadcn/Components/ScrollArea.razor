@@ -1,0 +1,29 @@
+﻿<div class="@Class relative overflow-hidden">
+    <div class="h-full w-full rounded-[inherit]">
+        @ChildContent
+    </div>
+    <div class="@ScrollBarClass" @onwheel="HandleScroll">
+        <div class="flex-1 bg-border relative rounded-full"></div>
+    </div>
+</div>
+
+@code {
+    private bool IsVertical { get; set; } = true; // Define a orientação padrão como vertical
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string Orientation { get; set; } = "vertical";
+
+    private string ScrollBarClass => IsVertical
+        ? "flex touch-none select-none transition-colors h-full w-2.5 border-l border-l-transparent p-[1px]"
+        : "flex touch-none select-none transition-colors h-2.5 flex-col border-t border-t-transparent p-[1px]";
+
+    private void HandleScroll(WheelEventArgs e) {
+        // Lógica personalizada para rolagem (opcional)
+    }
+}

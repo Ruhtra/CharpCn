@@ -1,0 +1,42 @@
+﻿@page "/teste"
+@using Shadcn.Components
+@using Shadcn.Components.Dialog
+
+<PageTitle>Built Content</PageTitle>
+
+<h1>Built Content Example</h1>
+
+
+<Input />
+<Button>Botão</Button>
+<Button Variant="secondary">Botão</Button>
+<Button Variant="destructive">Botão</Button>
+
+<Badge Variant="secondary">bad1</Badge>
+<Badge Variant="destructive">bad2</Badge>
+
+<Dialog>
+    <DialogTrigger>
+        <Button Variant="primary">
+            Abra-me
+        </Button>
+</DialogTrigger>
+   <DialogContent>
+       <DialogTitle Class="bg-yellow-200">
+           Um titulo
+       </DialogTitle>
+
+       o conteúdo 
+       <DialogFooter>
+           <DialogClose>
+               <button>Fechar</button>
+           </DialogClose>
+       </DialogFooter>
+
+   </DialogContent>
+</Dialog>
+
+
+
+@code {
+}

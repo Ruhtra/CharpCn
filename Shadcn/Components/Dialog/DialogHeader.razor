@@ -1,0 +1,11 @@
+﻿@inject DialogService DialogService
+
+<div class="space-y-1.5 flex flex-col text-center sm:text-left">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+}

@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Shadcn.Components.Priv.Cn
+
+<textarea
+       class="@GetInputClasses()"
+       value="@Value"
+       @oninput="OnInputChange"
+       @attributes="AdditionalAttributes" />
+
+@code {
+    // Propriedade de valor vinculada ao componente
+    [Parameter] public string Value { get; set; }
+
+    // Evento de alteração do valor
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetInputClasses() {
+        var baseClasses = "flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm";
+        return CnHelper.Cn([baseClasses, Class]);
+    }
+
+    // Manipulador de mudança de valor
+    private void OnInputChange(ChangeEventArgs e) {
+        Value = e.Value?.ToString() ?? string.Empty;
+        ValueChanged.InvokeAsync(Value);
+    }
+}

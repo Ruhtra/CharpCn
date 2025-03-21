@@ -1,0 +1,18 @@
+﻿@using Shadcn.Components.Priv.Cn
+@inject DialogService DialogService
+
+<div class="@GetInputClasses()" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; } // Atributos adicionais
+
+    private string GetInputClasses() {
+        var baseClasses = "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2";
+
+        return CnHelper.Cn([baseClasses, Class]);
+    }
+}

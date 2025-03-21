@@ -1,0 +1,16 @@
+﻿@inject DialogService DialogService
+
+
+<div class="contents"@onclick="OpenDialog">
+    <!-- Aqui invocamos o conteúdo do ChildContent, e adicionamos o evento de clique -->
+        @ChildContent
+</div>
+
+    @code {
+        [CascadingParameter] public Dialog? ParentDialog { get; set; }
+        [Parameter] public RenderFragment? ChildContent { get; set; }
+
+        private void OpenDialog() {
+            DialogService.Show(ParentDialog!.DialogId);
+        }
+}
