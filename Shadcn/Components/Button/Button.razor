@@ -1,10 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 @using Shadcn.Components.Priv.Cn
 
-<button
     @* Component="@(AsChild ? "span" : "button")" *@
     @* class="@GetButtonClasses() @(AsChild ? "contents" : "")" *@
-
+<button
     class="@GetButtonClasses()"
     disabled="@Disabled"
     type="@Type"

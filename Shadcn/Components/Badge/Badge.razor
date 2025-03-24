@@ -1,0 +1,39 @@
+﻿@using Shadcn.Components.Priv.Cn
+
+<div class="@BuildCssClass()" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter] public string? Variant { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AdditionalAttributes { get; set; } = new();
+
+
+    private CVAConfig badgeConfig = new CVAConfig {
+            Base = "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+            Variants = new Dictionary<string, Dictionary<string, object>> {
+                ["variant"] = new Dictionary<string, object> {
+                    ["default"] = "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+                    ["destructive"] = "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+                    ["outline"] = "text-foreground",
+                    ["secondary"] = "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+                }
+            },
+            DefaultVariants = new Dictionary<string, object> {
+                ["variant"] = "default",
+            }
+        };
+
+    private string BuildCssClass() {
+        var badgeVariants = DefineConfig.Create().CVA(badgeConfig)(new Dictionary<string, object> {
+                ["variant"] = Variant!,
+                ["class"] = Class
+            });
+
+        return CnHelper.Cn([badgeVariants]);
+    }
+}
