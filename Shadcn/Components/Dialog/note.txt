@@ -1,0 +1,3 @@
+﻿[ ] All Style
+[ ] All Functions
+[ ] Good logic

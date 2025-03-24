@@ -1,0 +1,13 @@
+﻿<!-- Avatar.razor -->
+<span class="@(CnHelper.Cn(["h-10 w-10 relative flex shrink-0 overflow-hidden rounded-full", Class]))">
+    <CascadingValue Value="Context">
+        @ChildContent
+    </CascadingValue>
+</span>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+
+    public AvatarContext Context { get; set; } = new AvatarContext();
+}

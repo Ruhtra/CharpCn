@@ -1,0 +1,11 @@
+﻿@if (!Context.HasImage) {
+    <span class="@(CnHelper.Cn(["flex h-full w-full items-center justify-center rounded-full bg-muted", Class]))">
+        @ChildContent
+    </span>
+}
+
+@code {
+    [CascadingParameter] public AvatarContext Context { get; set; } = default!;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+}

@@ -6,6 +6,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<LangVersion>12.0</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Components\Accordion\note.txt" />
+    <None Remove="Components\Avatar\note.txt" />
+    <None Remove="Components\Button\note.txt" />
+    <None Remove="Components\Dialog\note.txt" />
+    <None Remove="Components\Toast\note.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Components\Accordion\note.txt" />
+    <Content Include="Components\Avatar\note.txt" />
+    <Content Include="Components\Button\note.txt" />
+    <Content Include="Components\Dialog\note.txt" />
+    <Content Include="Components\Toast\note.txt" />
+  </ItemGroup>
 	
 
   <ItemGroup>

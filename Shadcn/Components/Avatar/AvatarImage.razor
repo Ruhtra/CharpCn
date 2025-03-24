@@ -1,0 +1,14 @@
+﻿@if (src is not null) {
+    <img src="@src" class="@(CnHelper.Cn(["aspect-square h-full w-full", Class]))" @attributes="AdditionalAttributes" />
+}
+
+@code {
+    [CascadingParameter] public AvatarContext Context { get; set; } = default!;
+    [Parameter] public string? src { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    protected override void OnParametersSet() {
+        Context.HasImage = !string.IsNullOrEmpty(src);
+    }
+}

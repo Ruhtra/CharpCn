@@ -1,9 +1,8 @@
-﻿@page "/teste"
+﻿@page "/test"
 
 @inject ToastService toastService
 
-<PageTitle>Built Content</PageTitle>
-
+<PageTitle>Testing components</PageTitle>
 
 <Input />
 
@@ -11,7 +10,7 @@
 
 <Button>Botão</Button>
 <Button Variant="secondary">Botão</Button>
-<Button Variant="destructive">Botão</Button>
+<Button Variant="destructive">destructive</Button>
 
 <br />
 
@@ -66,6 +65,20 @@
         </AccordionContent>
     </AccordionItem>
 </Accordion>
+
+<br />
+
+<Avatar>
+    <AvatarImage src="https://img.cdndsgni.com/preview/11599815.jpg" alt="pika pika" />
+    <AvatarFallback>PP</AvatarFallback>
+</Avatar>
+
+<Avatar>
+    <AvatarImage alt="pika pika" />
+    <AvatarFallback>PP</AvatarFallback>
+</Avatar>
+
+<br />
 
 
 
