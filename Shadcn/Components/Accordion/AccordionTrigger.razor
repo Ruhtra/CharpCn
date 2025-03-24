@@ -1,0 +1,22 @@
+﻿@inject AccordionService accordionService
+
+<div class="contents" @onclick="OpenAccordion">
+    <div class="flex">
+        <button
+            data-state="@(accordionService.IsVisible(ParentDialog?.ParentAccordion?.AccordionId!, ParentDialog?.value!) ? "open" : "closed")"
+            class="py-4 flex flex-1 items-center justify-between text-left text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+        >
+            @ChildContent
+            <ChevronDown Class="h-4 w-4 text-muted-foreground shrink-0 transition-transform duration-200" />
+        </button>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] public AccordionItem? ParentDialog { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private void OpenAccordion() {
+        accordionService.visibleItem(ParentDialog?.ParentAccordion?.AccordionId!, ParentDialog?.value!);
+    }
+}

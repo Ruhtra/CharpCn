@@ -1,0 +1,27 @@
+﻿@implements IDisposable
+
+@inject AccordionService accordionService
+
+<CascadingValue Value="this">
+    <div class="border-b">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [CascadingParameter] public Accordion? ParentAccordion { get; set; }
+
+    [Parameter, EditorRequired] public string value { get; set; }
+
+    protected override void OnInitialized() {
+        accordionService.RegisterItem(ParentAccordion?.AccordionId!, value);
+
+    }
+
+
+    public void Dispose() {
+        accordionService.UnregisterAccordion(value);
+    }
+}

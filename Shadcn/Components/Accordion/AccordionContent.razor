@@ -1,0 +1,20 @@
+﻿@inject AccordionService accordionService
+
+@code {
+    [CascadingParameter] public AccordionItem? ParentDialog { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
+@if (accordionService.IsVisible(ParentDialog?.ParentAccordion?.AccordionId!, ParentDialog?.value!)) {
+    <div
+        data-state="@(accordionService.IsVisible(ParentDialog?.ParentAccordion?.AccordionId!, ParentDialog?.value!) ? "open" : "closed")"
+        class="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    >
+        <div class="pb-4 pt-0">
+            @ChildContent
+
+        </div>
+    </div>
+}
+
+@code {
+}

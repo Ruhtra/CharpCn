@@ -1,6 +1,4 @@
 ﻿@page "/teste"
-@using Shadcn.Components
-@using Shadcn.Components.Dialog
 
 @inject ToastService toastService
 
@@ -47,6 +45,27 @@
        </DialogFooter>
    </DialogContent>
 </Dialog>
+
+<br />
+
+<Accordion Class="w-full" type="AccordionType.Multiple">
+    <AccordionItem value="trigger1">
+        <AccordionTrigger>
+            gatinho
+        </AccordionTrigger>
+        <AccordionContent>
+            Conteúdo
+        </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="trigger2">
+        <AccordionTrigger>
+            gatinho
+        </AccordionTrigger>
+        <AccordionContent>
+            Conteúdo
+        </AccordionContent>
+    </AccordionItem>
+</Accordion>
 
 
 

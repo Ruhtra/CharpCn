@@ -1,0 +1,28 @@
+﻿@implements IDisposable
+
+@inject AccordionService accordionService
+
+<CascadingValue Value="this">
+    <div class="@Class">
+        @ChildContent
+    </div>
+
+    @* <PortalOutlet Name="@DialogId" /> *@
+</CascadingValue>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+
+    [Parameter] public string AccordionId { get; set; } = Guid.NewGuid().ToString();
+    [Parameter] public AccordionType type { get; set; } = AccordionType.Single;
+    // [Parameter] public Action? changeDialog { get; set; }
+
+    protected override void OnInitialized() {
+        accordionService.RegisterAccordion(AccordionId, type, StateHasChanged);
+    }
+
+    public void Dispose() {
+        accordionService.UnregisterAccordion(AccordionId);
+    }
+}
