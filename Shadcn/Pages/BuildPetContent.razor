@@ -2,23 +2,36 @@
 @using Shadcn.Components
 @using Shadcn.Components.Dialog
 
-<PageTitle>Built Content</PageTitle>
+@inject ToastService toastService
 
-<h1>Built Content Example</h1>
+<PageTitle>Built Content</PageTitle>
 
 
 <Input />
+
+<br />
+
 <Button>Botão</Button>
 <Button Variant="secondary">Botão</Button>
 <Button Variant="destructive">Botão</Button>
 
+<br />
+
 <Badge Variant="secondary">bad1</Badge>
 <Badge Variant="destructive">bad2</Badge>
+
+<br/>
+
+<Button @onclick="@(() => toastService.ShowToast("conteúdo de sucesso", "Título", ToastLevel.Success))">Sucess</Button>
+<Button @onclick="@(() => toastService.ShowToast("conteúdo de erro", "Título", ToastLevel.Error))">Error</Button>
+<Button @onclick="@(() => toastService.ShowToast("conteúdo de aciso", "Título", ToastLevel.Warning))">Warning</Button>
+
+<br />
 
 <Dialog>
     <DialogTrigger>
         <Button Variant="primary">
-            Abra-me
+            Abrir Dialog
         </Button>
 </DialogTrigger>
    <DialogContent>
@@ -32,7 +45,6 @@
                <button>Fechar</button>
            </DialogClose>
        </DialogFooter>
-
    </DialogContent>
 </Dialog>
 

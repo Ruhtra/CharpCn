@@ -14,8 +14,6 @@
     [Parameter] public bool? open { get; set; }
     [Parameter] public Action? changeDialog { get; set; }
 
-    private bool IsVisible => DialogService.IsVisible(DialogId);
-
     protected override void OnInitialized() {
         // Registrar o dialogo no serviço
         DialogService.RegisterDialog(DialogId, StateHasChanged);
