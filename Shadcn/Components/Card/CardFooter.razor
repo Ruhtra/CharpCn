@@ -1,0 +1,8 @@
+﻿<div class="@(CnHelper.Cn(["p-6 pt-0", Class]))">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+}

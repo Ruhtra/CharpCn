@@ -1,0 +1,8 @@
+﻿<div class="@(CnHelper.Cn(["flex flex-col space-y-1.5 p-6", Class]))">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+}

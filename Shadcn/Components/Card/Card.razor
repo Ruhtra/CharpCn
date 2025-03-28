@@ -1,0 +1,8 @@
+﻿<div class="@(CnHelper.Cn(["rounded-xl border bg-card text-card-foreground shadow", Class]))">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+}
