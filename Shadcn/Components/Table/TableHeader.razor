@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Shadcn.Components.Priv.Cn
+
+<thead class="@GetHeaderClasses()" @attributes="AdditionalAttributes">
+    @ChildContent
+</thead>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetHeaderClasses() {
+        var baseClasses = "[&_tr]:border-b";
+        return CnHelper.Cn(new[] { baseClasses, Class });
+    }
+}

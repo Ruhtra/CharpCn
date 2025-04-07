@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Shadcn.Components.Priv.Cn
+
+<tbody class="@GetBodyClasses()" @attributes="AdditionalAttributes">
+    @ChildContent
+</tbody>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetBodyClasses() {
+        var baseClasses = "[&_tr:last-child]:border-0";
+        return CnHelper.Cn(new[] { baseClasses, Class });
+    }
+}

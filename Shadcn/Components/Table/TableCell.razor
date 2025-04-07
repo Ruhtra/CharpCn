@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Shadcn.Components.Priv.Cn
+
+<td class="@GetCellClasses()" @attributes="AdditionalAttributes">
+    @ChildContent
+</td>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetCellClasses() {
+        var baseClasses = "p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]";
+        return CnHelper.Cn(new[] { baseClasses, Class });
+    }
+}

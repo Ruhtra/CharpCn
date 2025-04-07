@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Shadcn.Components.Priv.Cn
+
+<div class="relative w-full overflow-auto">
+    <table class="@GetTableClasses()" @attributes="AdditionalAttributes">
+        @ChildContent
+    </table>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetTableClasses() {
+        var baseClasses = "w-full caption-bottom text-sm";
+        return CnHelper.Cn(new[] { baseClasses, Class });
+    }
+}

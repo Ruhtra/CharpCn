@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Shadcn.Components.Priv.Cn
+
+<caption class="@GetCaptionClasses()" @attributes="AdditionalAttributes">
+    @ChildContent
+</caption>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetCaptionClasses() {
+        var baseClasses = "mt-4 text-sm text-muted-foreground";
+        return CnHelper.Cn(new[] { baseClasses, Class });
+    }
+}
