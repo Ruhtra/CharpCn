@@ -1,4 +1,6 @@
-﻿public class ToastService {
+﻿namespace Shadcn.Components.Table;
+
+public class ToastService {
     public event Action _OnChange = () => { };
 
 

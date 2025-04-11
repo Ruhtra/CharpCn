@@ -1,4 +1,6 @@
-﻿@if (!Context.HasImage) {
+﻿@namespace Shadcn.Components.Avatar
+
+@if (!Context.HasImage) {
     <span class="@(CnHelper.Cn(["flex h-full w-full items-center justify-center rounded-full bg-muted", Class]))">
         @ChildContent
     </span>

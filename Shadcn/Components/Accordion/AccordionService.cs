@@ -1,4 +1,6 @@
-﻿using Shadcn.Components.Accordion;
+﻿namespace Shadcn.Components.Accordion;
+
+using Shadcn.Components.Accordion;
 using System.Runtime.CompilerServices;
 
 public class AccordionService {

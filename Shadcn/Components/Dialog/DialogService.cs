@@ -1,4 +1,6 @@
-﻿public class DialogService {
+﻿namespace Shadcn.Components.Dialog;
+
+public class DialogService {
     // Evento global para notificar mudanças de estado
     //public event Action? OnChange;
 

@@ -1,4 +1,6 @@
-﻿@if (src is not null) {
+﻿@namespace Shadcn.Components.Avatar
+
+@if (src is not null) {
     <img src="@src" class="@(CnHelper.Cn(["aspect-square h-full w-full", Class]))" @attributes="AdditionalAttributes" />
 }
 

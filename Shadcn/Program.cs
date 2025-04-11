@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using shadcn.Components.Priv.Portal;
+using Shadcn.Components.Priv.Portal;
 using Shadcn;
-using TwMerge;
+using Shadcn.TwMerge;
+using Shadcn.Components.Dialog;
+using Shadcn.Components.Table;
 
 
 
