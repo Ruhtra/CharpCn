@@ -5,6 +5,7 @@ using Shadcn;
 using Shadcn.TwMerge;
 using Shadcn.Components.Dialog;
 using Shadcn.Components.Table;
+using Shadcn.Components.Accordion;
 
 
 

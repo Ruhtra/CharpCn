@@ -1,53 +1,58 @@
-﻿namespace Shadcn.Components.Table;
+﻿using System;
+using System.Threading;
+
+namespace Shadcn.Components.Toast;
 
 public class ToastService {
-    public event Action _OnChange = () => { };
-
+    public event Action? OnChange;
 
     public string title = string.Empty;
     public string description = string.Empty;
     public ToastLevel level;
 
-    
-    private System.Timers.Timer? _toastTimer;
+    private Timer? _toastTimer;
     private bool _toastVisibility = false;
 
+    private SynchronizationContext? _syncContext;
+
     public void RegisterToast(Action onChange) {
-        _OnChange = onChange;
+        OnChange = onChange;
+        _syncContext = SynchronizationContext.Current; // Armazena o contexto da UI
     }
 
     public void UnregisterToast() {
-        //_OnChange.Remove();
+        OnChange = null;
+        _syncContext = null;
     }
 
-
     public void ShowToast(string message, string title, ToastLevel level) {
-        _OnChange.Invoke();
         _toastVisibility = true;
-
         this.title = title;
         this.description = message;
         this.level = level;
 
-        // Configura o Timer para esconder o toast após 3 segundos
-        _toastTimer?.Stop();
-        _toastTimer = new System.Timers.Timer(3000); // 3000 milissegundos = 3 segundos
-        _toastTimer.Elapsed += (sender, e) => HideToast();
-        _toastTimer.Start();
+        // Limpa qualquer timer anterior
+        _toastTimer?.Dispose();
+
+        // Cria novo timer
+        _toastTimer = new Timer(_ => {
+            if (_syncContext != null) {
+                _syncContext.Post(_ => HideToast(), null); // Executa dentro do contexto correto
+            }
+        }, null, 3000, Timeout.Infinite);
+
+        OnChange?.Invoke();
     }
 
     public void HideToast() {
         _toastVisibility = false;
-        _OnChange?.Invoke();
+        OnChange?.Invoke();
 
-        // Para o Timer quando o toast for escondido
-        _toastTimer?.Stop();
+        _toastTimer?.Dispose();
+        _toastTimer = null;
     }
 
-    // Verificar se o toast está visível
-    public bool IsVisible() {
-        return _toastVisibility;
-    }
+    public bool IsVisible() => _toastVisibility;
 }
 
 public enum ToastLevel {
