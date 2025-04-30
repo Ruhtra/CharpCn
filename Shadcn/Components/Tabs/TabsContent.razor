@@ -1,0 +1,23 @@
+﻿@namespace Shadcn.Components.Tabs
+
+
+@if (ParentTabs?.Value == Value) {
+    <div class="@GetClasses()" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [CascadingParameter] Tabs? ParentTabs { get; set; }
+
+    [Parameter] public string Value { get; set; } = string.Empty;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = string.Empty;
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string GetClasses() =>
+        CnHelper.Cn([
+            "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            Class
+        ]);
+}

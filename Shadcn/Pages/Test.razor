@@ -17,7 +17,7 @@
 <Badge Variant="secondary">bad1</Badge>
 <Badge Variant="destructive">bad2</Badge>
 
-<br/>
+<br />
 
 <Button @onclick="@(() => toastService.ShowToast("conteúdo de sucesso", "Título", ToastLevel.Success))">Sucess</Button>
 <Button @onclick="@(() => toastService.ShowToast("conteúdo de erro", "Título", ToastLevel.Error))">Error</Button>
@@ -30,19 +30,20 @@
         <Button Variant="primary">
             Abrir Dialog
         </Button>
-</DialogTrigger>
-   <DialogContent>
-       <DialogTitle Class="bg-yellow-200">
-           Um titulo
-       </DialogTitle>
+    </DialogTrigger>
+    <DialogContent>
+        <DialogTitle Class="bg-yellow-200">
+            Um titulo
+        </DialogTitle>
 
-       o conteúdo 
-       <DialogFooter>
-           <DialogClose>
-               <button>Fechar</button>
-           </DialogClose>
-       </DialogFooter>
-   </DialogContent>
+        o conteúdo
+        <DialogFooter Class="sm:justify-between">
+            <Button>aaaa</Button>
+            <DialogClose>
+                <Button>Fechar</Button>
+            </DialogClose>
+        </DialogFooter>
+    </DialogContent>
 </Dialog>
 
 <br />
@@ -81,16 +82,16 @@
 <br />
 <Card>
 
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card Description</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p>Card Content</p>
-  </CardContent>
-  <CardFooter>
-    <p>Card Footer</p>
-  </CardFooter>
+    <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card Description</CardDescription>
+    </CardHeader>
+    <CardContent>
+        <p>Card Content</p>
+    </CardContent>
+    <CardFooter>
+        <p>Card Footer</p>
+    </CardFooter>
 </Card>
 
 <br />
@@ -133,8 +134,24 @@
     </TableFooter>
 </Table>
 
+<br/>
 
 
+
+<Tabs Value="@selectedTab" ValueChanged="@((string v) => selectedTab = v)">
+    <TabsList>
+        <TabsTrigger Value="tab1">Aba 1</TabsTrigger>
+        <TabsTrigger Value="tab2">Aba 2</TabsTrigger>
+    </TabsList>
+
+    <TabsContent Value="tab1">
+        Conteúdo da aba 1
+    </TabsContent>
+    <TabsContent Value="tab2">
+        Conteúdo da aba 2
+    </TabsContent>
+</Tabs>
 
 @code {
+    private string selectedTab = "tab1";
 }
